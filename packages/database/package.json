@@ -1,0 +1,14 @@
+{
+  "name": "@workspace/database",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "dependencies": {
+    "@prisma/client": "^5.x.x"
+  },
+  "devDependencies": {
+    "prisma": "^5.x.x",
+    "typescript": "^5.x.x"
+  }
+}
