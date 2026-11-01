@@ -1,0 +1,19 @@
+
+model User {
+  // Unique identifier using UUIDv7 for time-ordered sorting and performance
+  id        String      @id @default(uuid(7)) @db.Uuid
+  email     String      @unique @db.VarChar(255)
+  password  String      @db.Text
+  fullname  String      @db.VarChar(100)
+  role      Role        @default(USER)
+  status    UserStatus  @default(ACTIVE)
+  
+  // ==================== Timestamps ====================
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  
+  // ==================== Relations ====================
+  quota     UserQuota?
+
+  @@map("users")
+}

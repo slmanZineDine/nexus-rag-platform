@@ -1,0 +1,21 @@
+// prisma/schema/models/user-quota.model.prisma
+
+model UserQuota {
+  // Unique identifier using UUIDv7 for time-ordered sorting and performance
+  id            String    @id @default(uuid(7)) @db.Uuid
+  userId        String    @unique @db.Uuid
+  
+  // Daily limit optimized with SmallInt for space efficiency
+  dailyLimit    Int       @default(50) @db.SmallInt
+  usedCount     Int       @default(0) @db.SmallInt
+  lastResetDate DateTime  @default(now())
+
+  // ==================== Timestamps ====================
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // ==================== Relations ====================
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_quotas")
+}
